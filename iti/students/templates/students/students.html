@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+    <h1> G11 Students list</h1>
+    <h2> Django instructor for this group is {{myname}} </h2>
+    {{students}}
+    <h1> List of students in {{dept}}</h1>
+    <ol>
+        {% for std in students %}
+            {% if std == "Ali" %}
+            {% else %}
+                <li>{{std}} </li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    {{info}}
+    <h3> my Info is {{info.name}}  {{info.email}}</h3>
+
+</body>
+</html>

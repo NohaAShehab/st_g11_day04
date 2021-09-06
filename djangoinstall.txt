@@ -1,0 +1,67 @@
+
+
+# python with django to create web application
+
+# web application --> request data from server
+
+
+
+# local machine, has many ports
+
+
+import so  ---> some packages
+pip install package_name
+
+----
+installed  --> webserver  ---> machine --> listent
+
+request --> http protocol 80 , https protocol 443
+http protocol ===> retrieve data
+
+webserver ---> apache, nginx tomcat
+django --> builtin server ---> development server --> send requests
+
+
+--------
+to create your first django project
+
+> django-admin startproject iti
+2 folders create
+outer folder iti ---> basic compontents of the application ,
+has file manage.py --> runserver, shell, makemigrations, migrate
+inner folder ---> has our application
+
+---
+django app installed and ready to run --->
+python manage.py runserver
+
+
+http://127.0.0.1:8000/
+localhost ---> 127.0.0.1   http -->protocol ---> port 8000
+
+-----
+web application ---> serve ---> ITI Students, Staff, courses
+
+application ---> divide ===> component
+
+ python manage.py startapp students
+
+
+## any request to the server --- > url resolver
+views ---> do logic ---> return http response
+
+browser ---> http --> http request ---> http response
+
+
+###############################
+Installed apps ---> add appliction compontents ---
+we add application to installed apps ---> detect the templates folder
+
+create folder with the component name in each temaplate folder
+
+####  separation for the urls
+
+inside each component or app
+create python file urls.py
+
+
