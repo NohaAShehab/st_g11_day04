@@ -1,24 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Students</title>
-</head>
-<body>
-    <h1> G11 Students list</h1>
-    <h2> Django instructor for this group is {{myname}} </h2>
-    {{students}}
-    <h1> List of students in {{dept}}</h1>
-    <ol>
-        {% for std in students %}
-            {% if std == "Ali" %}
-            {% else %}
-                <li>{{std}} </li>
-            {% endif %}
-        {% endfor %}
-    </ol>
-    {{info}}
-    <h3> my Info is {{info.name}}  {{info.email}}</h3>
+{% extends 'students/layouts/base.html' %}
+{% load static %}
+{% block content %}
+<!--        <div class="container p-3 mb-2 bg-warning text-dark">-->
+<!--        <h1> G11 Students list</h1>-->
+<!--        <h2> Django instructor for this group is {{myname}} </h2>-->
+<!--        {{students}}-->
+<!--        <h1> List of students in {{dept}}</h1>-->
+<!--        <ol>-->
+<!--            {% for std in students %}-->
+<!--                {% if std == "Ali" %}-->
+<!--                {% else %}-->
+<!--                    <li>{{std}} </li>-->
+<!--                {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </ol>-->
+<!--        {{info}}-->
+<!--        <h3> my Info is {{info.name}}  {{info.email}}</h3>-->
+<!--                <img src="{% static 'students/images/img.jpg' %}" width="500" height="500">-->
+<!--    </div>-->
+<!--    {{students}}-->
+    <div class="container" >
+    {% for std in students %}
 
-</body>
-</html>
+<!--        <li> {{std}} </li>-->
+        <div class="card" style="width: 18rem; margin: 10px; display:inline-block">
+          <img width="250" height="250" src="{% static 'students/images/'|add:std.img %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{std.name}}</h5>
+            <p class="card-text">{{std.img}}</p>
+            <a href="{% url 'studentprofile' std.name %}" class="btn btn-primary">
+                Go to {{std.name}} profile</a>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Students</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--      <a class="navbar-brand" href="/students/mygoogle">MyGoogle</a>-->
+<!--      <button class="navbar-toggler" type="button"-->
+<!--              data-toggle="collapse" data-target="#navbarNav"-->
+<!--              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
+<!--      <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--        <ul class="navbar-nav">-->
+<!--          <li class="nav-item active">-->
+<!--            <a class="nav-link" href="/students/home">Home <span class="sr-only">(current)</span></a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="/students/liststudents">Features</a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link" href="/students/hellopage">Hello page</a>-->
+<!--          </li>-->
+<!--            <li class="nav-item">-->
+<!--            <a class="nav-link" href="/students/aboutus">About us </a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </nav>-->
+<!--    <div class="container">-->
+<!--        <h1> G11 Students list</h1>-->
+<!--        <h2> Django instructor for this group is {{myname}} </h2>-->
+<!--        {{students}}-->
+<!--        <h1> List of students in {{dept}}</h1>-->
+<!--        <ol>-->
+<!--            {% for std in students %}-->
+<!--                {% if std == "Ali" %}-->
+<!--                {% else %}-->
+<!--                    <li>{{std}} </li>-->
+<!--                {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </ol>-->
+<!--        {{info}}-->
+<!--        <h3> my Info is {{info.name}}  {{info.email}}</h3>-->
+<!--    </div>-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+

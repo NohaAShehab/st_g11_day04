@@ -1,0 +1,19 @@
+{% extends 'students/layouts/base.html'%}
+{% load static %}
+{% block content%}
+    <div class="container">
+        <h1> {{student.name}} Profile</h1>
+     <div class="card" style="width: 18rem; margin: 10px; display:inline-block">
+          <img width="250" height="250" src="{% static 'students/images/'|add:student.img %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{student.name}}</h5>
+            <p class="card-text">{{student.img}}</p>
+
+          </div>
+     </div>
+        <a href="{% url 'allstudents' %}" class="btn btn-success">
+                Back to All students</a>
+
+    </div>
+
+{% endblock %}

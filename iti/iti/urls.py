@@ -29,5 +29,7 @@ urlpatterns = [
     # you need define the urls file of component student
     # courses
     # path('courses', testcourses)
-    path("courses/", include("courses.urls"))
+    path("courses/", include("courses.urls")),
+    path("depts", include("depts.urls"))
+    # path("depts/", include("depts.urls")),
 ]

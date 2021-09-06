@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # 'courses',
-
+    'depts.apps.DeptsConfig',
     'students.apps.StudentsConfig',
     'courses.apps.CoursesConfig',
     'django.contrib.admin',
@@ -79,8 +79,14 @@ WSGI_APPLICATION = 'iti.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'itig11',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'iti'
     }
 }
 
