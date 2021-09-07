@@ -7,9 +7,28 @@
           <img width="250" height="250" src="{% static 'students/images/'|add:student.img %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{student.name}}</h5>
-            <p class="card-text">{{student.img}}</p>
+            <p class="card-text">Email: {{student.email}}</p>
+            <p class="card-text">Gender: {{student.gender}}</p>
+              <p class="card-text">Created at: {{student.created_at}}</p>
+              <p class="card-text">updated at: {{student.updated_at}}</p>
+          <p class="card-text">updated at: {{student.dept}}</p>
+            {{student.dept.id}}  {{student.dept.dept_name}}   {{student.dept.dept_desc}}
 
           </div>
+
+         <h5> Members in this dept also</h5>
+<!--         select * from students where dept= student.dept.id -->
+
+<!--         Noha-->
+
+         {% for std in student.dept.dept_students.all %}
+                {% if std.id != student.id %}
+                   <a href="{% url 'studentprofile' std.id %}" class="btn btn-info">
+                    Go to {{std.name}} profile</a>
+                {% endif %}
+         {% endfor %}
+         </div>
+
      </div>
         <a href="{% url 'allstudents' %}" class="btn btn-success">
                 Back to All students</a>

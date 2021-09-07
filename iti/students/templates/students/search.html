@@ -1,0 +1,31 @@
+{% extends 'students/layouts/base.html' %}
+
+{% load static %}
+
+{% block body %}
+        <div class="container" >
+        <form action="" method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">Enter name </label>
+            <input type="text" name="searchname"
+                   class="form-control" id="exampleInputname"
+                   aria-describedby="nameHelp" placeholder="Enter name">
+            <small id="nameHelp" class="form-text text-muted">Please type the name you want to search for </small>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+            <ol>
+                {% for student in searchres %}
+                   <li>
+
+                 <a href="{% url 'studentprofile' student.id %}" class="btn btn-success">
+                        Go to {{student.name}} profile</a>
+
+                   </li>
+                {% endfor %}
+            </ol>
+        </div>
+{% endblock %}

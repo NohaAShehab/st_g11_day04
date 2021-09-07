@@ -1,18 +1,21 @@
 from django.urls import path
 from students.views import home, hello, helloPage, google, \
-    listStudentFun, aboutus, teststyle,studentProfile
+    listStudentFun, aboutus, teststyle,studentProfile,search, addStudent
 
 urlpatterns = [
 
     # url parameter
     path('home/', home, name="studentshome"),
-    path('hello/<myname>/<email>', hello),
+    path('hello/<str:myname>/<email>', hello),
     path('hellopage', helloPage),
     path('studentgoogle', google, name="mygoogle"),
     path('liststudents', listStudentFun, name="allstudents"),
     path('aboutus', aboutus, name='aboutus'),
     path('style', teststyle, name='teststyle'),
-    path("liststudents/<std_name>", studentProfile, name="studentprofile")
+    # enforce the request will be sent to the view if only the std_id int
+    path("liststudents/<int:std_id>", studentProfile, name="studentprofile"),
+    path("searchstudent", search, name="searchstudent"),
+    path("add", addStudent, name="addstudent"),
 
     # courses
 

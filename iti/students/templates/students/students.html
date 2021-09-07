@@ -21,14 +21,12 @@
 <!--    {{students}}-->
     <div class="container" >
     {% for std in students %}
-
-<!--        <li> {{std}} </li>-->
         <div class="card" style="width: 18rem; margin: 10px; display:inline-block">
           <img width="250" height="250" src="{% static 'students/images/'|add:std.img %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{std.name}}</h5>
             <p class="card-text">{{std.img}}</p>
-            <a href="{% url 'studentprofile' std.name %}" class="btn btn-primary">
+            <a href="{% url 'studentprofile' std.id %}" class="btn btn-primary">
                 Go to {{std.name}} profile</a>
           </div>
         </div>

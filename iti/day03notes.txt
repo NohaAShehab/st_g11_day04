@@ -1,0 +1,52 @@
+# retrieve data from the database
+
+
+# get objects
+
+# I have 2 problems
+url 0--> integer
+solve: path("liststudents/<int:std_id>", studentProfile, name="studentprofile")
+
+object ---> may be not found
+
+
+# track  object creatation , edition
+
+
+### related backword relation
+
+
+
+#### modify object ---
+
+# query object from database --->
+# modify it
+# save()
+
+## form methods
+# POST, GET
+POST ---> parameters form client to server --> request body
+GET---> parameters form client to server --> URL
+http://127.0.0.1:8000/students/searchstudent?name=noha
+
+
+CSRF ---> Cross-Site Request Forgery
+
+create token number, sent to the server , request body
+
+
+http://127.0.0.1:8000/students/searchstudent  ---> get method
+--------------------------
+
+
+create component --> category (name, description) ---> models
+modify product to have categroy
+    dept = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="dept_students")
+
+modify product to have created_at, updated_at
+
+
+# display products from database
+# select product ,,, display product details, other products in this category
+# add new product
+# after ---> search about product ---> m*
