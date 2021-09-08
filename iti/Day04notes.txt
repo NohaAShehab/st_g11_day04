@@ -1,0 +1,13 @@
+#### delete object
+
+# request methods --> GET, POST, PUT, PATCH, Delete
+
+
+
+
+Django forms  --> inside your app --> create file ---/> forms
+
+
+### install crispy forms
+
+

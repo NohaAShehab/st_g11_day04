@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # 'courses',
+    'crispy_forms',
     'depts.apps.DeptsConfig',
     'students.apps.StudentsConfig',
     'courses.apps.CoursesConfig',
@@ -133,3 +134,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

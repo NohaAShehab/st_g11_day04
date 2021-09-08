@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from students.models import Student
 from depts.models import Department
-
+from students.forms import StudentForm
+from students.forms import StudentModelForm
 
 # Create your views here.
 
@@ -67,8 +68,6 @@ def listStudentFun(request):
 
 
 def studentProfile(request, std_id):
-
-
     # return HttpResponse(std_id)
     # student = Student.objects.get(pk=std_id)
     student = get_object_or_404(Student, pk=std_id)
@@ -81,7 +80,7 @@ def studentProfile(request, std_id):
 
     context = {"student": student}
     # # return HttpResponse(std_name)
-    return render(request, "students/studentprofile.html",context)
+    return render(request, "students/studentprofile.html", context)
     # return
 
 
@@ -100,35 +99,100 @@ def search(request):
         print(request.POST["searchname"])
         searchname = request.POST["searchname"]
         ## goto database search about students , with name ali
-        students = Student.objects.filter(name=searchname)
+        students = Student.objects.filter(name__startswith=searchname)
         print(students)
-        context = {"searchres":students}
+        context = {"searchres": students}
         return render(request, 'students/search.html', context)
     elif request.method == "GET":
         return render(request, 'students/search.html')
 
 
-
 def addStudent(request):
+    # form = StudentForm()
+    form = StudentModelForm()
+    # use from the created in forms in py
     if request.method == "GET":
-        departments = Department.objects.all()
-        context = {"depts": departments}
-        return render(request,'students/addstudent.html', context)
+        # departments = Department.objects.all()
+        # context = {"depts": departments}
+        context = {"form": form}
+        return render(request, 'students/addstudent.html', context)
 
-    if request.method =="POST":
-        # create student object
-        print(request.POST["dept"])
-        std = Student()
-        std.name = request.POST["name"]
-        std.email = request.POST["email"]
-        std.img = request.POST["img"]
-        std.gender = request.POST["gender"]
-        # dept is missing , I need deptartment object
-        mydept = Department.objects.get(pk=request.POST["dept"])
-        std.dept = mydept
-        # save it to the database
-        std.save()
-        # return to the all students page
+    if request.method == "POST":
+        # form = StudentForm(request.POST)
+        # if form.is_valid():  # check if the inputs vaidate the model
+        #     # create student object
+        #     print(request.POST["dept"])
+        #     # std = Student()
+        #     # std.name = request.POST["name"]
+        #     # std.email = request.POST["email"]
+        #     # std.img = request.POST["img"]
+        #     # std.gender = request.POST["gender"]
+        #     # # dept is missing , I need deptartment object
+        #     mydept = Department.objects.get(pk=request.POST["dept"])
+        #     # std.dept = mydept
+        #     # # save it to the database
+        #     # std.save()
+        #
+        #     Student.objects.create(name=request.POST["name"],
+        #                        email=request.POST["email"],
+        #                        img=request.POST["img"],
+        #                        gender=request.POST["gender"],
+        #                        dept=mydept)
+        #     # return to the all students page
+        form = StudentModelForm(request.POST)
+        form.save()
+
         return redirect("allstudents")
 
+
+def deleteStudent(request, std_id):
+    student = get_object_or_404(Student, pk=std_id)
+    student.delete()
+    # return HttpResponse(student)
+    return redirect("allstudents")
+
+
+def editStudent(request, std_id):
+    student = get_object_or_404(Student, pk=std_id)
+    if request.method =="GET":
+        departments = Department.objects.all()
+        if student.gender =="m":
+            student.g = True
+        elif student.gender =="f":
+            student.g = False
+
+        context={"student": student, "depts": departments}
+        return render(request, "students/editstudent.html", context)
+    if request.method =='POST':
+        # student.name = request.POST["name"]
+        # student.email = request.POST["email"]
+        # student.gender = request.POST["gender"]
+        # student.img = request.POST["img"]
+        # ## request.POST["dept"]
+        mydept = Department.objects.get(pk=request.POST["dept"])
+        # student.dept = mydept
+        # student.save()
+
+        Student.objects.filter(pk=std_id).update(
+            name=request.POST["name"],
+            email=request.POST["email"],
+            img=request.POST["img"],
+            gender=request.POST["gender"],
+            dept=mydept)
+
+        return redirect("allstudents")
+
+
+def updateStudent(request, std_id):
+    if request.method == "POST":
+        student = get_object_or_404(Student, pk=std_id)
+        student.name = request.POST["name"]
+        student.email = request.POST["email"]
+        student.gender = request.POST["gender"]
+        student.img = request.POST["img"]
+        ## request.POST["dept"]
+        mydept = Department.objects.get(pk=request.POST["dept"])
+        student.dept = mydept
+        student.save()
+        return redirect("allstudents")
 

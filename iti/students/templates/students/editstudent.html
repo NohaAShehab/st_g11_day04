@@ -1,0 +1,113 @@
+{% extends 'students/layouts/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+    <div class="container">
+        <h1> Edit Student </h1>
+        <form action="{% url 'updatestudent' student.id%}" method="POST">
+            {% csrf_token %}
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{student.name}}"
+                     name="name" id="" placeholder="Name ">
+            </div>
+          </div>
+         <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control"  value="{{student.email}}"
+                     name="email" id="" placeholder="Email">
+            </div>
+          </div>
+
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">img</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{student.img}}" name="img" placeholder="img">
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+                {{student.gender}}
+              <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+
+                {% if student.gender == "m"%}
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender"
+                         id="gridRadios1" value="m" checked >
+                  <label class="form-check-label" for="gridRadios1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender"
+                         id="gridRadios2" value="f" >
+                  <label class="form-check-label" for="gridRadios2">
+                    Female
+                  </label>
+                </div>
+              </div>
+                {% elif student.gender == 'f' %}
+                 <div class="col-sm-10">
+                    <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender"
+                         id="gridRadios1" value="m"  >
+                  <label class="form-check-label" for="gridRadios1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gridRadios2"
+                         value="f" checked>
+                  <label class="form-check-label" for="gridRadios2">
+                    Female
+                  </label>
+                </div>
+              </div>
+                {% else %}
+                <div class="col-sm-10">
+                    <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender"
+                         id="gridRadios1" value="m"  >
+                  <label class="form-check-label" for="gridRadios1">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gender" id="gridRadios2"
+                         value="f" >
+                  <label class="form-check-label" for="gridRadios2">
+                    Female
+                  </label>
+                </div>
+              </div>
+
+                {% endif %}
+
+            </div>
+          </fieldset>
+        <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Department</label>
+            <select class="custom-select" name ="dept" required>
+            {% for dept in depts %}
+              <option value="{{dept.id}}">{{dept.dept_name}}</option>
+            {% endfor %}
+            </select>
+            <div class="invalid-feedback">Example invalid custom select feedback</div>
+        </div>
+
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Update Student</button>
+            </div>
+          </div>
+        </form>
+
+    </div>
+
+
+{% endblock %}

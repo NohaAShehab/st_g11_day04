@@ -28,6 +28,16 @@
             <p class="card-text">{{std.img}}</p>
             <a href="{% url 'studentprofile' std.id %}" class="btn btn-primary">
                 Go to {{std.name}} profile</a>
+            <a href="{% url 'editstudent' std.id %}" class="btn btn-warning">
+                Edit {{std.name}} profile</a>
+<!--          <a href="{% url 'deletestudent' std.id %}" class="btn btn-danger">-->
+<!--               Delete {{std.name}} profile</a>-->
+              <div>
+                  <form action="{% url 'deletestudent' std.id %}" method="DELETE">
+                      {% csrf_token %}
+                      <input type="submit"  class="btn btn-danger" value="Delete">
+                  </form>
+              </div>
           </div>
         </div>
     {% endfor %}

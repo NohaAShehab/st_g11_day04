@@ -1,0 +1,98 @@
+1- Template inheritance
+{% extends 'path to the base file' %}
+
+2- static files
+create folder --> with name static ---> css, js , images
+in html file
+{% load static %}
+src ="{% static 'path of the file' %}"
+
+3- named urls
+
+4- binding img to the template
+
+6- render ---> return httpresponse
+
+__________________________________
+Design pattern ---> MVC
+
+Model  --> dealing with database
+
+View  ----> html files --->
+
+Controller  ---> connect between model , view
+------
+MVT
+
+M --> Model  dealing with database
+
+V --> View  connect between model , templates
+
+T ---> template ---> html file
+
+
+____________
+
+connect to the database ---> get data from it
+ORM ---> Object relation mapper
+each table inside the database can be represented by A Class
+
+to connect to database
+### install driver files
+pip install psycopg2-binary
+
+in main component settings
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'itig11',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'iti'
+    }
+}
+
+
+### frameworks ,,
+db structure  --> model
+framework --> migration files ---> track changes in models,
+--> migrate database structure to the dbms engine
+
+to send dabase struture to the dbms
+1- create migration files
+pyhon manage.py makemigrations  ---> create migration file
+__ that can be used to create table in database
+
+to apply changes in the database
+
+
+
+Task
+
+create webapplication
+Product (name, imge, desc, price)
+1- Home  --> List all products (name, image, viewproduct button)
+2- viewproduct ---> name, image, description , price
+in viewproduct --> button  back to home
+3- contact us
+4- about us
+
+All pages must inherits from the same base design
+Base design ---> header, footer, navbar
+
+## all urls ----> must have names
+
+-----
+connect to postgres database
+create model --> product
+--> create migration files
+--> migrate to the database
+--> create superuser ==
+--> register model in admin --> add, edit, delete products from django admin_
+
+
+
+

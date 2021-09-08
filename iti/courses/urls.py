@@ -1,10 +1,12 @@
 
 from django.urls import path
+from . import views
+
 # from students.views import home,hello,helloPage,google,listStudentFun
-from courses.views import testcourses
+from courses.views import testcourses, addCourse
 urlpatterns = [
 
-    # you need define the urls file of component student
     # courses
-    path('', testcourses)
+    # path('', testcourses),
+    path('add', addCourse, name="addcourse"),
 ]
